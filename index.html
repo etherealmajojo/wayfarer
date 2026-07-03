@@ -1,62 +1,103 @@
-:root {
-    /* Fondo más negro para contraste máximo */
-    --bg-dark: #050a10;       
-    --bg-card: #0d1621;       
-    --border-blue: #1e3a5f;   
-    --text-main: #ffffff;
-    --text-muted: #94a3b8;
-    
-    /* Colores más vibrantes */
-    --blue: #007bff;          
-    --blue-light: #3b82f6;    
-    --red: #ff3e3e;           /* Un rojo más eléctrico y encendido */
-    --red-dark: #cc0000;
-    
-    --overlay: rgba(5, 10, 16, 0.85);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayfarer Services | Plumbing & Gasfitting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050a10;
+            --bg-card: #0d1621;
+            --border-blue: #1e3a5f;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --blue: #007bff;
+            --blue-light: #3b82f6;
+            --red: #ff3e3e;
+            --red-dark: #cc0000;
+            --overlay: rgba(5, 10, 16, 0.85);
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --sticky-bar-height: 68px;
+        }
 
-/* 1. Haz que los títulos tengan un gradiente más claro */
-.hero h1 {
-    background: linear-gradient(to right, #fff, var(--red));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding-bottom: var(--sticky-bar-height); }
 
-/* 2. Resalta los bordes de las tarjetas */
-.service-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-blue);
-    border-left: 4px solid var(--blue); /* Más grueso para que se vea */
-    transition: all 0.3s ease;
-}
+        .hero {
+            min-height: 100svh;
+            background: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1536514498073-50e69d39c6ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px;
+        }
 
-.service-card:hover {
-    border-left-color: var(--red); /* El cambio al pasar el mouse es clave */
-}
+        .hero h1 {
+            font-family: var(--font-heading); font-weight: 800; font-size: 3rem; text-transform: uppercase;
+            background: linear-gradient(to right, #fff, var(--red));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;
+        }
 
-/* 3. Botones: Que el rojo sea el protagonista absoluto */
-.btn-cta {
-    background: transparent;
-    border: 2px solid var(--red);
-    color: var(--red);
-    box-shadow: 0 0 10px rgba(255, 62, 62, 0.2);
-}
+        .btn-cta {
+            background: transparent; border: 2px solid var(--red); color: var(--red);
+            padding: 16px 30px; font-weight: 600; text-transform: uppercase;
+            cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; border-radius: 6px;
+        }
+        .btn-cta:hover { background: var(--red); color: #fff; box-shadow: 0 0 20px rgba(255, 62, 62, 0.6); }
 
-.btn-cta:hover {
-    background: var(--red);
-    color: #fff;
-    box-shadow: 0 0 20px rgba(255, 62, 62, 0.6);
-}
+        section { padding: 60px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h2::after { content: ''; display: block; width: 50px; height: 4px; background: var(--red); margin-top: 10px; }
 
-/* 4. La Barra Sticky (esto es vital para el impacto visual) */
-.sticky-cta-bar a.call-action {
-    background: var(--red); /* Rojo sólido */
-    color: #fff;
-    font-weight: 800;
-}
+        .service-card {
+            background: var(--bg-card); padding: 30px; border-left: 4px solid var(--blue);
+            transition: all 0.3s ease;
+        }
+        .service-card:hover { border-left-color: var(--red); }
 
-.sticky-cta-bar a.text-action {
-    background: var(--blue); /* Azul sólido */
-    color: #fff;
-    border-left: 1px solid rgba(255,255,255,0.2);
-}
+        .sticky-cta-bar {
+            position: fixed; bottom: 0; width: 100%; height: var(--sticky-bar-height);
+            display: flex; z-index: 1000;
+        }
+        .sticky-cta-bar a { flex: 1; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 800; }
+        .sticky-cta-bar .call-action { background: var(--red); color: #fff; }
+        .sticky-cta-bar .text-action { background: var(--blue); color: #fff; }
+
+        @media (min-width: 768px) { .hero h1 { font-size: 4rem; } }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>Wayfarer Services</h1>
+        <p>Red Seal Plumbing & Gasfitting. Rugged reliability, refined results.</p>
+        <div style="margin-top: 2rem;">
+            <a href="#contact" class="btn-cta">Request Service</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>The Wayfarer Standard</h2>
+            <p>15 years of experience serving Vancouver Island, from Victoria to Nanaimo.</p>
+            <div class="service-card" style="margin-top: 20px;">
+                <h3>Professional Commitment</h3>
+                <p>✓ Licensed & Insured<br>✓ 15 Years Experience<br>✓ Regular: M-F 9-5<br>✓ Emergency: $300 Min.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background: #060d15; text-align: center;">
+        <h2>Get in Touch</h2>
+        <p>Text or Call: <strong>778-587-6826</strong></p>
+    </section>
+
+    <div class="sticky-cta-bar">
+        <a href="tel:+17785876826" class="call-action">CALL NOW</a>
+        <a href="sms:+17785876826" class="text-action">TEXT US</a>
+    </div>
+
+</body>
+</html>
