@@ -19,161 +19,222 @@
             --overlay: rgba(6, 12, 20, 0.78);
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Open Sans', sans-serif;
+            --sticky-bar-height: 68px;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+ 
+        html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+ 
         body {
             font-family: var(--font-body);
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            /* room so content never hides behind the sticky call bar */
+            padding-bottom: var(--sticky-bar-height);
         }
-
+ 
         /* Hero Section Estilo Cinemático */
         .hero {
-            height: 100vh;
+            min-height: 100svh;
             background: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1536514498073-50e69d39c6ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            /* fixed attachment is unreliable on mobile Safari/Chrome; use scroll for touch devices */
+            background-attachment: scroll;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 100px 20px 40px;
         }
-
+ 
         .hero h1 {
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 4rem;
+            font-size: 2.6rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             margin-bottom: 1rem;
             background: linear-gradient(to right, var(--blue-light), var(--red));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
-
+ 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 300;
-            max-width: 600px;
+            max-width: 500px;
             margin-bottom: 2rem;
             color: var(--text-main);
         }
-
+ 
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+            max-width: 340px;
+        }
+ 
         .btn-cta {
             background: transparent;
             border: 2px solid var(--red);
             color: var(--red);
-            padding: 15px 40px;
+            padding: 16px 30px;
             font-family: var(--font-heading);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             text-decoration: none;
             display: inline-block;
+            font-size: 0.95rem;
+            border-radius: 6px;
         }
-
-        .btn-cta:hover {
+ 
+        .btn-cta:hover, .btn-cta:active {
             background: var(--red);
             color: #fff;
             box-shadow: 0 0 20px rgba(230, 57, 75, 0.5);
         }
-
+ 
+        .btn-cta.btn-secondary {
+            border-color: var(--blue);
+            color: var(--blue-light);
+        }
+ 
+        .btn-cta.btn-secondary:hover, .btn-cta.btn-secondary:active {
+            background: var(--blue);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(47, 125, 209, 0.5);
+        }
+ 
+        .btn-cta svg { vertical-align: -3px; margin-right: 8px; }
+ 
         /* Secciones Generales */
-        section { padding: 80px 20px; }
-
+        section { padding: 60px 20px; }
+ 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 30px;
             align-items: center;
         }
-
+ 
         h2 {
             font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.9rem;
+            margin-bottom: 1.2rem;
             position: relative;
             display: inline-block;
             color: var(--text-main);
         }
-
+ 
         h2::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 50px;
             height: 4px;
             background: var(--red);
             margin-top: 10px;
         }
-
+ 
         /* Grid de Servicios/Info */
-        .info-text { font-size: 1.1rem; color: var(--text-muted); }
-
+        .info-text { font-size: 1rem; color: var(--text-muted); }
+ 
         .grid-halves {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
-
+ 
         .service-card {
             background: var(--bg-card);
-            padding: 40px;
+            padding: 30px 25px;
             border: 1px solid var(--border-blue);
             border-left: 3px solid var(--blue);
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
-
+ 
         .service-card:hover {
             transform: translateY(-5px);
             border-color: var(--red);
             border-left-color: var(--red);
         }
-
+ 
         .service-card h3 { margin-bottom: 1rem; color: var(--blue-light); }
-
+ 
+        /* Rate Highlight */
+        .rate-highlight {
+            background: var(--bg-card);
+            border: 1px solid var(--border-blue);
+            border-left: 3px solid var(--red);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+ 
+        .rate-highlight .rate-amount {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+        }
+ 
+        .rate-highlight .rate-unit {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+ 
+        .rate-highlight .rate-label {
+            margin-top: 8px;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+ 
         /* Tabla Moderna */
         .modern-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0 10px;
-            margin-top: 20px;
+            margin-top: 10px;
         }
         .modern-table td {
             background: var(--bg-card);
-            padding: 20px;
-            border-bottom: none;
+            padding: 18px;
             border-top: 1px solid var(--border-blue);
             border-bottom: 1px solid var(--border-blue);
+            font-size: 0.95rem;
         }
         .modern-table td:first-child {
-            border-radius: 10px 0 0 10px;
+            border-radius: 10px 10px 0 0;
             font-weight: bold;
             color: var(--red);
-            width: 40%;
             border-left: 1px solid var(--border-blue);
         }
         .modern-table td:last-child {
-            border-radius: 0 10px 10px 0;
+            border-radius: 0 0 10px 10px;
             color: #fff;
             border-right: 1px solid var(--border-blue);
         }
-
+        .modern-table tr { display: block; margin-bottom: 5px; }
+        .modern-table td { display: block; width: 100%; }
+ 
         /* Contacto Minimalista */
         #contact { background: #060d15; text-align: center; }
-
+ 
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -181,7 +242,7 @@
             flex-direction: column;
             gap: 15px;
         }
-
+ 
         input, textarea {
             background: var(--bg-card);
             border: 1px solid var(--border-blue);
@@ -189,32 +250,104 @@
             color: white;
             font-family: var(--font-body);
             font-size: 1rem;
+            border-radius: 6px;
+            width: 100%;
         }
-
+ 
         input:focus, textarea:focus { outline: none; border-color: var(--blue-light); }
-
+ 
+        .call-now-line {
+            margin-top: 40px;
+            color: var(--text-muted);
+        }
+ 
+        .call-now-line a {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 1.4rem;
+            color: var(--blue-light);
+            font-weight: bold;
+            text-decoration: none;
+        }
+ 
         /* Footer */
-        footer { text-align: center; padding: 40px; background: #000; color: #6d7f92; font-size: 0.9rem; }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .container { grid-template-columns: 1fr; }
-            .modern-table td { display: block; width: 100%; border-radius: 10px; margin-bottom: 5px;}
-            .modern-table td:first-child { border-radius: 10px 10px 0 0; }
-            .modern-table td:last-child { border-radius: 0 0 10px 10px; }
+        footer { text-align: center; padding: 30px 20px; background: #000; color: #6d7f92; font-size: 0.85rem; }
+ 
+        /* STICKY CALL-TO-ACTION BAR (mobile-first, present across the whole scroll) */
+        .sticky-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--sticky-bar-height);
+            background: #050b12;
+            border-top: 1px solid var(--border-blue);
+            display: flex;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+            /* iOS home-indicator safe area */
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+ 
+        .sticky-cta-bar a {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+ 
+        .sticky-cta-bar a.call-action {
+            background: var(--red);
+            color: #fff;
+        }
+ 
+        .sticky-cta-bar a.text-action {
+            background: transparent;
+            color: var(--blue-light);
+            border-left: 1px solid var(--border-blue);
+        }
+ 
+        .sticky-cta-bar a:active { filter: brightness(0.85); }
+ 
+        .sticky-cta-bar svg { width: 18px; height: 18px; }
+ 
+        /* Desktop enhancements — wider layouts once there's room */
+        @media (min-width: 769px) {
+            .hero { background-attachment: fixed; padding: 0 20px; }
+            .hero h1 { font-size: 4rem; letter-spacing: 2px; }
+            .hero p { font-size: 1.5rem; max-width: 600px; }
+            .hero-ctas { flex-direction: row; max-width: none; justify-content: center; }
+            .container { grid-template-columns: 1fr 1fr; gap: 40px; }
+            h2 { font-size: 2.5rem; }
+            .grid-halves { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+            .modern-table tr { display: table-row; }
+            .modern-table td { display: table-cell; width: 40%; }
+            .modern-table td:first-child { border-radius: 10px 0 0 10px; }
+            .modern-table td:last-child { border-radius: 0 10px 10px 0; width: 60%; }
         }
     </style>
 </head>
 <body>
-
+ 
     <!-- HERO SECTION -->
     <section class="hero">
         <h1>Wayfarer Services</h1>
         <p>Red Seal Plumbing & Gasfitting across Vancouver Island. Rugged reliability, refined results.</p>
-        <a href="#contact" class="btn-cta">Request Service</a>
+        <div class="hero-ctas">
+            <a href="tel:+17785876826" class="btn-cta">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.25 1.02l-2.2 2.21z"/></svg>Call Now
+            </a>
+            <a href="#contact" class="btn-cta btn-secondary">Request Service</a>
+        </div>
     </section>
-
+ 
     <!-- ABOUT SECTION -->
     <section id="about">
         <div class="container">
@@ -231,24 +364,30 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- COVERAGE & HOURS -->
     <section id="details" style="background-color: #0a1420;">
         <div class="container">
             <div>
                 <h2>Island Coverage</h2>
                 <p class="info-text">Based in Greater Victoria, we mobilize quickly to serve the entire Vancouver Island region:</p>
-                <div class="grid-halves" style="margin-top: 20px; color: var(--text-muted);">
+                <div class="grid-halves">
                     <p>• Greater Victoria<br>• Sidney<br>• Sooke</p>
                     <p>• Langford<br>• Duncan<br>• Nanaimo</p>
                 </div>
             </div>
             <div>
                 <h2>Availability & Rates</h2>
+ 
+                <div class="rate-highlight">
+                    <span class="rate-amount">$160</span><span class="rate-unit"> / hour</span>
+                    <div class="rate-label">Regular Hours Rate</div>
+                </div>
+ 
                 <table class="modern-table">
                     <tr>
                         <td>Regular Hours</td>
-                        <td>Mon - Fri | 9:00 AM - 5:00 PM</td>
+                        <td>Mon - Fri | 9:00 AM - 5:00 PM<br>Starting at $160/hr</td>
                     </tr>
                     <tr>
                         <td>After Hours</td>
@@ -258,31 +397,69 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- CONTACT SECTION -->
     <section id="contact">
         <h2>Get in Touch</h2>
         <p class="info-text" style="margin-bottom: 30px;">Facing an issue? Send us a detailed message. We respond quickly during business hours.</p>
-
-        <div class="contact-form">
-            <input type="text" placeholder="Name" required>
-            <input type="tel" placeholder="Phone Number (for SMS)" required>
-            <textarea rows="5" placeholder="Brief description of plumbing issue"></textarea>
-            <!-- Nota: El action mailto: funciona, pero para producción se necesita un backend. Esto abrirá el gestor de correo del cliente con los datos -->
-            <button type="submit" class="btn-cta" style="width: 100%; margin-top: 20px;">Send via Email</button>
-        </div>
-
-        <div style="margin-top: 50px; color: var(--text-muted);">
+ 
+        <form class="contact-form" id="serviceRequestForm" onsubmit="return sendServiceRequest(event)">
+            <input type="text" id="requestName" placeholder="Name" required>
+            <input type="tel" id="requestPhone" placeholder="Phone Number (for SMS)" required>
+            <textarea rows="5" id="requestDetails" placeholder="Brief description of plumbing issue"></textarea>
+            <!-- Builds a mailto: link on submit so the customer's own email app sends the request to serviceswayfarer@gmail.com -->
+            <button type="submit" class="btn-cta" style="width: 100%; margin-top: 10px;">Send via Email</button>
+        </form>
+        <script>
+            function sendServiceRequest(event) {
+                event.preventDefault();
+                var name = document.getElementById('requestName').value.trim();
+                var phone = document.getElementById('requestPhone').value.trim();
+                var details = document.getElementById('requestDetails').value.trim();
+ 
+                var subject = 'Service Request from ' + (name || 'Website Visitor');
+                var body =
+                    'Name: ' + name + '\n' +
+                    'Phone: ' + phone + '\n\n' +
+                    'Issue Description:\n' + (details || 'N/A');
+ 
+                var mailtoLink = 'mailto:serviceswayfarer@gmail.com'
+                    + '?subject=' + encodeURIComponent(subject)
+                    + '&body=' + encodeURIComponent(body);
+ 
+                window.location.href = mailtoLink;
+                return false;
+            }
+        </script>
+ 
+        <div class="call-now-line">
             <p>Direct Text / Call:</p>
-            <p style="font-size: 1.5rem; color: var(--blue-light); font-weight: bold;">778-587-6826</p>
+            <a href="tel:+17785876826">778-587-6826</a>
+        </div>
+ 
+        <div class="call-now-line">
+            <p>Or Email Us Directly:</p>
+            <a href="mailto:serviceswayfarer@gmail.com" style="font-size: 1.1rem;">serviceswayfarer@gmail.com</a>
         </div>
     </section>
-
+ 
     <!-- FOOTER -->
     <footer>
         &copy; 2026 Wayfarer Services. All rights reserved. <br>
         Serving Vancouver Island's Plumbing Needs.
     </footer>
-
+ 
+    <!-- STICKY CALL-TO-ACTION BAR: stays visible across the entire page on every scroll position -->
+    <div class="sticky-cta-bar">
+        <a href="tel:+17785876826" class="call-action">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.25 1.02l-2.2 2.21z"/></svg>
+            Call Now
+        </a>
+        <a href="sms:+17785876826" class="text-action">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+            Text Us
+        </a>
+    </div>
+ 
 </body>
 </html>
