@@ -7,10 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #1a1a1a;
+            --bg-dark: #0b1622;       /* deep navy background */
+            --bg-card: #101f30;       /* slightly lighter navy for cards */
+            --border-blue: #24405e;   /* muted blue border */
             --text-main: #f4f4f4;
-            --accent: #00d26a; /* Un verde eléctrico y moderno */
-            --overlay: rgba(0, 0, 0, 0.75);
+            --text-muted: #a9b8c9;
+            --blue: #2f7dd1;          /* primary blue */
+            --blue-light: #5aa9ff;    /* lighter blue for gradients/hover */
+            --red: #e6394b;           /* accent red */
+            --red-dark: #b8202f;
+            --overlay: rgba(6, 12, 20, 0.78);
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Open Sans', sans-serif;
         }
@@ -47,7 +53,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, var(--accent));
+            background: linear-gradient(to right, var(--blue-light), var(--red));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -57,12 +63,13 @@
             font-weight: 300;
             max-width: 600px;
             margin-bottom: 2rem;
+            color: var(--text-main);
         }
 
         .btn-cta {
             background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
+            border: 2px solid var(--red);
+            color: var(--red);
             padding: 15px 40px;
             font-family: var(--font-heading);
             font-weight: 600;
@@ -71,12 +78,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
+            display: inline-block;
         }
 
         .btn-cta:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(0, 210, 106, 0.5);
+            background: var(--red);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(230, 57, 75, 0.5);
         }
 
         /* Secciones Generales */
@@ -98,6 +106,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
+            color: var(--text-main);
         }
 
         h2::after {
@@ -105,13 +114,13 @@
             display: block;
             width: 60px;
             height: 4px;
-            background: var(--accent);
+            background: var(--red);
             margin-top: 10px;
         }
 
         /* Grid de Servicios/Info */
-        .info-text { font-size: 1.1rem; color: #ccc; }
-        
+        .info-text { font-size: 1.1rem; color: var(--text-muted); }
+
         .grid-halves {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -120,18 +129,20 @@
         }
 
         .service-card {
-            background: #252525;
+            background: var(--bg-card);
             padding: 40px;
-            border: 1px solid #333;
-            transition: transform 0.3s ease;
+            border: 1px solid var(--border-blue);
+            border-left: 3px solid var(--blue);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent);
+            border-color: var(--red);
+            border-left-color: var(--red);
         }
 
-        .service-card h3 { margin-bottom: 1rem; color: #fff; }
+        .service-card h3 { margin-bottom: 1rem; color: var(--blue-light); }
 
         /* Tabla Moderna */
         .modern-table {
@@ -141,16 +152,28 @@
             margin-top: 20px;
         }
         .modern-table td {
-            background: #252525;
+            background: var(--bg-card);
             padding: 20px;
             border-bottom: none;
+            border-top: 1px solid var(--border-blue);
+            border-bottom: 1px solid var(--border-blue);
         }
-        .modern-table td:first-child { border-radius: 10px 0 0 10px; font-weight: bold; color: var(--accent); width: 40%;}
-        .modern-table td:last-child { border-radius: 0 10px 10px 0; color: #fff;}
+        .modern-table td:first-child {
+            border-radius: 10px 0 0 10px;
+            font-weight: bold;
+            color: var(--red);
+            width: 40%;
+            border-left: 1px solid var(--border-blue);
+        }
+        .modern-table td:last-child {
+            border-radius: 0 10px 10px 0;
+            color: #fff;
+            border-right: 1px solid var(--border-blue);
+        }
 
         /* Contacto Minimalista */
-        #contact { background: #111; text-align: center; }
-        
+        #contact { background: #060d15; text-align: center; }
+
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -160,18 +183,18 @@
         }
 
         input, textarea {
-            background: #252525;
-            border: 1px solid #333;
+            background: var(--bg-card);
+            border: 1px solid var(--border-blue);
             padding: 15px;
             color: white;
             font-family: var(--font-body);
             font-size: 1rem;
         }
 
-        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+        input:focus, textarea:focus { outline: none; border-color: var(--blue-light); }
 
         /* Footer */
-        footer { text-align: center; padding: 40px; background: #000; color: #777; font-size: 0.9rem; }
+        footer { text-align: center; padding: 40px; background: #000; color: #6d7f92; font-size: 0.9rem; }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -210,12 +233,12 @@
     </section>
 
     <!-- COVERAGE & HOURS -->
-    <section id="details" style="background-color: #111;">
+    <section id="details" style="background-color: #0a1420;">
         <div class="container">
             <div>
                 <h2>Island Coverage</h2>
                 <p class="info-text">Based in Greater Victoria, we mobilize quickly to serve the entire Vancouver Island region:</p>
-                <div class="grid-halves" style="margin-top: 20px; color: #aaa;">
+                <div class="grid-halves" style="margin-top: 20px; color: var(--text-muted);">
                     <p>• Greater Victoria<br>• Sidney<br>• Sooke</p>
                     <p>• Langford<br>• Duncan<br>• Nanaimo</p>
                 </div>
@@ -240,7 +263,7 @@
     <section id="contact">
         <h2>Get in Touch</h2>
         <p class="info-text" style="margin-bottom: 30px;">Facing an issue? Send us a detailed message. We respond quickly during business hours.</p>
-        
+
         <div class="contact-form">
             <input type="text" placeholder="Name" required>
             <input type="tel" placeholder="Phone Number (for SMS)" required>
@@ -248,10 +271,10 @@
             <!-- Nota: El action mailto: funciona, pero para producción se necesita un backend. Esto abrirá el gestor de correo del cliente con los datos -->
             <button type="submit" class="btn-cta" style="width: 100%; margin-top: 20px;">Send via Email</button>
         </div>
-        
-        <div style="margin-top: 50px; color: #555;">
+
+        <div style="margin-top: 50px; color: var(--text-muted);">
             <p>Direct Text / Call (No WhatsApp):</p>
-            <p style="font-size: 1.5rem; color: var(--accent); font-weight: bold;">778-587-6826</p>
+            <p style="font-size: 1.5rem; color: var(--blue-light); font-weight: bold;">778-587-6826</p>
         </div>
     </section>
 
